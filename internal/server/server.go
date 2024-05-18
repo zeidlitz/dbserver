@@ -7,8 +7,7 @@ import(
 )
 
 type Data struct {
-	Key    int    `json:"key"`
-	Value  string `json:"value"`
+	Response  string `json:"value"`
 }
 
 type Response struct {
@@ -18,7 +17,7 @@ type Response struct {
 }
 
 func handler(w http.ResponseWriter, r *http.Request) {
-  slog.Info("Recieved" , "Header", r.Header)
+  slog.Info("Handleded request" , "Remote Address", r.RemoteAddr)
   response := Response{
     Status: http.StatusOK,
     Message: "Running",

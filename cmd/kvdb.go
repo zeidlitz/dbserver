@@ -2,9 +2,9 @@ package main
 
 import(
   "fmt"
-  "log/slog"
 
-  "github.com/zeidlitz/kvdb/internal/env"
+  "github.com/zeidlitz/dbserver/internal/env"
+  "github.com/zeidlitz/dbserver/internal/server"
 )
 
 type Config struct{
@@ -17,5 +17,5 @@ func main() {
   cfg.serverAddress = env.GetString("SERVER_ADDRESS", "localhost")
   cfg.httpPort = env.GetInt("HTTP_PORT", 8080)
   address := fmt.Sprintf(cfg.serverAddress + ":" + "%d", cfg.httpPort)
-  slog.Info("Starting up", "address", address)
+  server.Start(address)
 }

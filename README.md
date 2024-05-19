@@ -1,4 +1,4 @@
-### dbserver (Database Server)
+## dbserver (Database Server)
 
 The goal of dbserver is to be a very simple & lightweight HTTP interface to your database. The aim is to have support for commonly used databases where It should be easy for the user to interface towards multiple different types of connections. 
 
@@ -10,15 +10,15 @@ Example of usage:
 
 - You want to add unnecessary abstraction to your cloud to make a already over-engineer solution even more over-engineered.
 
-#### Installation & usage
+### Installation & usage
 
 TODO
 
-#### Configuration
+### Configuration
 
 TODO
 
-#### Supported databases
+### Supported databases
 
 - trashdatabase
 

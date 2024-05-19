@@ -40,6 +40,16 @@ func TestTrashDBConnection(t *testing.T){
 }
 ```
 
+This test can be executed from the package itself. (I still don't understand goalngs testing framework well enough to know how to run it from the root directory of the project.) Expected output:
+
+```bash
+go tests
+2024/05/19 14:11:15 INFO TrashDB connected connection=trashconnection
+PASS
+ok      github.com/zeidlitz/dbserver/internal/trashdatabase
+0.009s
+```
+
 ### Supported databases
 
 - trashdatabase

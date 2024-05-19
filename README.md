@@ -12,9 +12,23 @@ Example of usage:
 
 ### Installation & usage
 
-TODO
+dbserver expects a set of environment variables to run properly. Check [Configuration](#Configuration) for further details. If not configured default values will be set that will likely have not be suitable for any general user. 
+
 
 ### Configuration
+
+Below are the environment variables used for configuration and breif description of each purpose 
+
+```yaml
+The address the server will be listening on 
+SERVER_ADDRESS=localhost
+
+The http port the server will use
+HTTP_PORT=8080
+
+The database connection the server will use
+DB_CONNECTION=database.db
+```
 
 TODO
 

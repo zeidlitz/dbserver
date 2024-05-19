@@ -18,4 +18,10 @@ TODO
 
 TODO
 
+#### Supported databases
 
+- trashdatabase
+
+- sqlite
+
+- redis

@@ -20,8 +20,8 @@ func main() {
   var db trashdatabase.TrashDB
 
   cfg.serverAddress = env.GetString("SERVER_ADDRESS", "localhost")
-  cfg.dbConnection = env.GetString("DB_CONNECTION", "database.db")
   cfg.httpPort = env.GetInt("HTTP_PORT", 8080)
+  cfg.dbConnection = env.GetString("DB_CONNECTION", "database.db")
   address := fmt.Sprintf(cfg.serverAddress + ":" + "%d", cfg.httpPort)
   server.Start(address, db)
 }

@@ -4,14 +4,13 @@ import (
 	"encoding/json"
 	"log/slog"
 	"net/http"
+
+	"github.com/zeidlitz/dbserver/internal/database"
 )
 
-type Database interface {
-	Query(query string) (err error, response string)
-	Connect(connection string) (err error)
-}
+type Database = database.Database
 
-var database Database
+var db Database
 
 type Data struct {
 	Response string `json:"value"`
@@ -39,9 +38,8 @@ func handler(w http.ResponseWriter, r *http.Request) {
 
 func queryHandler(w http.ResponseWriter, r *http.Request) {
 	slog.Info("Handleded request", "Remote Address", r.RemoteAddr)
-	// Temporary mockup query, refactor this
-	query := "GET TRASH"
-	err, queryResponse := database.Query(query)
+	query := "SELECT * FROM key_value_pairs"
+	err, queryResponse := db.Query(query)
 	if err != nil {
 		slog.Error("Error during query", "query", query, "error", err)
 	}
@@ -64,9 +62,9 @@ func queryHandler(w http.ResponseWriter, r *http.Request) {
 	w.Write(res)
 }
 
-func Start(address string, db Database) {
+func Start(address string, database Database) {
 	slog.Info("Starting up", "address", address)
-	database = db
+	db = database
 	http.HandleFunc("/", handler)
 	http.HandleFunc("/query", queryHandler)
 	err := http.ListenAndServe(address, nil)

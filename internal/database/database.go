@@ -1,5 +1,6 @@
 package database
 
 type Database interface {
-	Query(dbConnection string, query string) (err error, response string)
+	Query(query string) (err error, response string)
+	Connect() (err error)
 }

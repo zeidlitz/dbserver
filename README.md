@@ -26,6 +26,9 @@ SERVER_ADDRESS=localhost
 The http port the server will use
 HTTP_PORT=8080
 
+The database type you wish to interface towards (sqlite, redis) see section Supported Types
+DB_TYPE=sqlite
+
 The database connection the server will use
 DB_CONNECTION=database.db
 ```

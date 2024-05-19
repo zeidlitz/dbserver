@@ -18,6 +18,46 @@ TODO
 
 TODO
 
+### Testing
+
+The goal is to add some test for each kind of supported database. (Not sure as of yet how realistic that would be). Below shows a example of testing the connection to my trashdatabase. The idea is that as long as the connection method return non nil we consider the test complete. This test might not be feasable to have for all supported database types since it would need a actual database connection to test. But things like queries should be rather doable to mock up and ensure that a given query returns the expected behaviour. 
+
+´´´go
+package connection
+
+import(
+  "testing"
+  "github.com/zeidlitz/dbserver/internal/trashdatabase"
+)
+
+func TestTrashDBConnection(t *testing.T){
+  var db trashdatabase.TrashDB
+  err := db.Connect("trashconnection")
+  if err != nil {
+    t.Fatal("Failed to connect to TrashDB")
+  }
+
+}
+´´´
+
+'''go
+package connection
+
+import(
+  "testing"
+  "github.com/zeidlitz/dbserver/internal/trashdatabase"
+)
+
+func TestTrashDBConnection(t *testing.T){
+  var db trashdatabase.TrashDB
+  err := db.Connect("trashconnection")
+  if err != nil {
+    t.Fatal("Failed to connect to TrashDB")
+  }
+
+}
+'''
+
 ### Supported databases
 
 - trashdatabase

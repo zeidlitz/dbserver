@@ -4,7 +4,7 @@ The goal of dbserver is to be a very simple & lightweight HTTP interface to your
 
 #### use-case
 
-- You have some database or persistent storage running and you want to interface with to it with HTTP.
+- You have some database or persistent storage running and you want to interface to it with HTTP.
 
 - You have some database or persistent storage running and you want a middleware layer between them and some other service. 
 

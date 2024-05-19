@@ -19,7 +19,7 @@ dbserver expects a set of environment variables to run properly. Check [Configur
 
 Below are the environment variables used for configuration and breif description of each purpose 
 
-```json
+```bash
 The address the server will be listening on 
 SERVER_ADDRESS=localhost
 

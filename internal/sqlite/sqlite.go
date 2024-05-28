@@ -9,18 +9,12 @@ import (
 )
 
 type SQLite struct {
-  Connection string
-	conn *sql.DB
+	Connection string
+	conn       *sql.DB
 }
 
-func (s SQLite) Connect() (err error) {
-  slog.Info("Connecting", "connection", s.Connection)
-  s.conn, err = sql.Open("sqlite3", s.Connection)
-
-	if err != nil {
-		slog.Error("Failed to connect to database", "error", err.Error())
-		return err
-	}
+func (s SQLite) Connect(connection string) (err error) {
+  s.Connection = connection
   return nil
 }
 
@@ -35,27 +29,39 @@ func (s SQLite) Query(query string) (err error, response string) {
 
 	rows, err := db.Query(query)
 
-  if err != nil {
+	if err != nil {
 		slog.Error("Error when executing", "query", query, "error", err.Error())
 		return err, ""
-  }
+	}
 
 	defer rows.Close()
 
-  cols, err := rows.Columns() 
-  values := make([]interface{}, len(cols))
-  for i := range cols {
-      values[i] = new(string)
-  }
+	columns, err := rows.Columns()
+	if err != nil {
+		slog.Error("Error when retriveing columns", "error", err.Error())
+	}
+
+	values := make([]interface{}, len(columns))
+	valuePtrs := make([]interface{}, len(columns))
 
 	for rows.Next() {
-		if err := rows.Scan(values...); err != nil {
-			slog.Error("Error scanning rows", "rows", rows, "error", err.Error())
-			return err, ""
+		for i := range columns {
+			valuePtrs[i] = &values[i]
+		}
+		if err := rows.Scan(valuePtrs...); err != nil {
+			slog.Error("Error when scanning values", "error", err)
 		}
 	}
 
-  // value := strings.Join(values, " ")
-  value := fmt.Sprintf("%v", &values)
-	return err, value
+	for i, col := range columns {
+		val := values[i]
+		b, ok := val.([]byte)
+		if ok {
+			fmt.Printf("%s: %s\n", col, string(b))
+		} else {
+			fmt.Printf("%s: %v\n", col, val)
+		}
+	}
+
+	return err, ""
 }

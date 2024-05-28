@@ -5,7 +5,7 @@ import (
 )
 
 type TrashDB struct {
-	name string
+	Name string
 }
 
 func (t TrashDB) Connect(connection string) error {

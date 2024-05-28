@@ -84,7 +84,7 @@ Next extend the functionallity in internal/databasefactory.go say for example yo
 func GetDatabase(dbtype string, dbconnection string) (err error, db Database){
   switch dbtype {
   case "sqlite":
-	  db = sqlite.SQLite{Connection: dbconnection}
+	db = sqlite.SQLite{Connection: dbconnection}
     err = nil
   case "trashdatabse":
     db = trashdatabase.TrashDB{Name: "trashconnection"}

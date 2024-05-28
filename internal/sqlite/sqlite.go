@@ -14,8 +14,8 @@ type SQLite struct {
 }
 
 func (s SQLite) Connect(connection string) (err error) {
-  s.Connection = connection
-  return nil
+	s.Connection = connection
+	return nil
 }
 
 func (s SQLite) Query(query string) (err error, response string) {

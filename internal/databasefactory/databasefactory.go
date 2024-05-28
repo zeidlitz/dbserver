@@ -11,18 +11,17 @@ import (
 
 type Database = database.Database
 
-
-func GetDatabase(dbtype string, dbconnection string) (err error, db Database){
-  switch dbtype {
-  case "sqlite":
-	  db = sqlite.SQLite{Connection: dbconnection}
-    err = nil
-  case "trashdatabse":
-    db = trashdatabase.TrashDB{Name: "trashconnection"}
-    err = nil
-  default:
-    slog.Error("Undefined database type", "dbtype", dbtype)
-    err = errors.New("Undefined database type")
-  }
-  return err, db
+func GetDatabase(dbtype string, dbconnection string) (err error, db Database) {
+	switch dbtype {
+	case "sqlite":
+		db = sqlite.SQLite{Connection: dbconnection}
+		err = nil
+	case "trashdatabse":
+		db = trashdatabase.TrashDB{Name: "trashconnection"}
+		err = nil
+	default:
+		slog.Error("Undefined database type", "dbtype", dbtype)
+		err = errors.New("Undefined database type")
+	}
+	return err, db
 }

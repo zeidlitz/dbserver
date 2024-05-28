@@ -77,7 +77,13 @@ ok      github.com/zeidlitz/dbserver/internal/trashdatabase
 
 The idea is that you should be able to exapnd the source code to implement more database types. First add a new package in internal and ensure it implemets the interface found in internal/database
 
-Next extend the functionallity in internal/databasefactory.go say for example you want to extend with trashdatabse it would look like so:
+Next extend the functionallity in 
+
+```bash
+internal/databasefactory.go 
+```
+
+say for example you want to extend with trashdatabse it would look like so:
 
 
 ```go
@@ -87,11 +93,11 @@ func GetDatabase(dbtype string, dbconnection string) (err error, db Database){
         db = sqlite.SQLite{Connection: dbconnection}
         err = nil
   case "trashdatabse":
-    db = trashdatabase.TrashDB{Name: "trashconnection"}
-    err = nil
+        db = trashdatabase.TrashDB{Name: "trashconnection"}
+        err = nil
   default:
-    slog.Error("Undefined database type", "dbtype", dbtype)
-    err = errors.New("Undefined database type")
+        slog.Error("Undefined database type", "dbtype", dbtype)
+        err = errors.New("Undefined database type")
   }
   return err, db
 }

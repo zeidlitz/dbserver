@@ -17,7 +17,7 @@ dbserver expects a set of environment variables to run properly. Check [Configur
 
 ### Configuration
 
-Below are the environment variables used for configuration and breif description of each purpose 
+The following environment variables are used for configuration:
 
 ```dosini
 The address the server will be listening on 
@@ -32,8 +32,6 @@ DB_TYPE=sqlite
 The database connection the server will use
 DB_CONNECTION=database.db
 ```
-
-TODO
 
 ### Testing
 
